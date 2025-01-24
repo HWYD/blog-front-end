@@ -4,7 +4,7 @@ export async function fetchData(url, options = {}) {
         method: 'GET',
         credentials: 'include',// 发送跨域请求时携带 Cookie
         headers: {
-            'authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6IjE1MTEzMTA2OTc1IiwicGFzc3dvcmQiOiIxMjM0IiwiaWQiOjE5LCJpYXQiOjE3Mzc2MTg1NjgsImV4cCI6MTczNzcwNDk2OH0.PA38oqLOfWVp6uqGSRJdXRxays2LZfCBnQHyFszpOag'
+            'authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6IjE1MTEzMTA2OTc1IiwicGFzc3dvcmQiOiIxMjM0IiwiaWQiOjE5LCJpYXQiOjE3Mzc3MDcxNDksImV4cCI6MTczODEzOTE0OX0.KvwlbgI08hiV8G_xXrRsgrhSU7fp7ZEevXpdZvZgV4E'
         }
     };
 

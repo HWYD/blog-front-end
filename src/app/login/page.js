@@ -6,9 +6,9 @@ import { fetchData } from '../../api';
 import { useRouter } from 'next/navigation'
 import Cookies from "js-cookie"
 
-const App = () => {
+const App = (isModalOpen) => {
     const router = useRouter()
-  const onFinish = (values) => {
+    const onFinish = (values) => {
     const fetchDataFromAPI = async () => {
         try {
             const { token } = await fetchData('http://10.101.64.247:3300/login',{
