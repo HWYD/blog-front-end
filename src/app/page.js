@@ -9,7 +9,7 @@ export default async function Home() {
     page: 1,
     pagesize: 10
   }
-  const { rows: bookData, count } = await fetchData('http://10.101.64.247:3300/book',{
+  const { rows: bookData, count } = await fetchData('/book',{
     query: {
       ...pageConfig
     }

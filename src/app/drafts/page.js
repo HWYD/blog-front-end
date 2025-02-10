@@ -8,7 +8,7 @@ export default function drafts(){
         console.log(values)
         const fetchDataFromAPI = async () => {
             try {
-                const data = await fetchData('http://10.101.64.247:3300/book',{
+                const data = await fetchData('/book',{
                     method: 'POST',
                     body: values
                 });

@@ -10,8 +10,9 @@ const App = (isModalOpen) => {
     const router = useRouter()
     const onFinish = (values) => {
     const fetchDataFromAPI = async () => {
+        console.log(process.env.NEXT_PUBLIC_API_URL)
         try {
-            const { token } = await fetchData('http://10.101.64.247:3300/login',{
+            const { token } = await fetchData('/login',{
                 method: 'POST',
                 body: values
             });
