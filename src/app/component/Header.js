@@ -1,9 +1,14 @@
 import { Button  } from 'antd';
 import Link from 'next/link'
+// import { useSelector, useDispatch } from 'react-redux';
+// import { login, logout } from '@/store/authSlice';
 
 export default function Header(){
+    // const isLogin = useSelector((state) => state.auth.isLogin);
+    // const dispatch = useDispatch();
     return (
         <>
+        {/* <Provider store={store}> */}
             <header className="py-2 bg-white">
                 <div className="flex justify-between items-center max-w-[1280px] mx-auto">
                         <Link href="/"><img src='/image/logo.png' className="w-12"></img></Link>
@@ -13,6 +18,7 @@ export default function Header(){
                     </div>
                 </div>
             </header>
+        {/* </Provider> */}
         </>
     )
 }

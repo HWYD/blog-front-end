@@ -1,18 +1,22 @@
 'use client';
 import { Button, Checkbox, Form, Input, Flex } from 'antd';
 import { fetchData } from '../../api';
+import { useRouter } from 'next/navigation'
 
+const { TextArea } = Input;
 
+// console.log('useNavigate:', useRouter); 
 export default function drafts(){
+    const router = useRouter()
     const onFinish = (values) =>{
         console.log(values)
         const fetchDataFromAPI = async () => {
             try {
-                const data = await fetchData('/book',{
+                const data = await fetchData('/article',{
                     method: 'POST',
                     body: values
                 });
-                router.push('/')
+                router.push('/');
             } catch (error) {
                 console.error('Failed to fetch data:', error);
             }
@@ -33,8 +37,8 @@ export default function drafts(){
         onFinish={onFinish}
         >
         <Form.Item
-            name="name"
-            label="书籍名称"
+            name="title"
+            label="文章标题"
             rules={[
             {
                 required: true,
@@ -43,18 +47,6 @@ export default function drafts(){
             ]}
         >
             <Input placeholder="phone" />
-        </Form.Item>
-        <Form.Item
-            name="author"
-            label="作者"
-            rules={[
-            {
-                required: true,
-                message: 'Please input author!',
-            },
-            ]}
-        >
-            <Input placeholder="author" />
         </Form.Item>
         <Form.Item
             name="cover"
@@ -81,16 +73,16 @@ export default function drafts(){
             <Input placeholder="description" />
         </Form.Item>
         <Form.Item
-            name="price"
-            label="价格"
+            name="content"
+            label="内容"
             rules={[
             {
                 required: true,
-                message: 'Please input price!',
+                message: 'Please input content!',
             },
             ]}
         >
-            <Input placeholder="price" />
+            <TextArea rows={4} />
         </Form.Item>
 
         <Form.Item>

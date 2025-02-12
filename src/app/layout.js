@@ -1,6 +1,9 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import Header from './component/Header'
+// import { Provider } from 'react-redux';
+// import makeStore from '@/store';
+// import { useMemo } from 'react';
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -19,14 +22,17 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  // const store = useMemo(() => makeStore(), []);
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Header></Header>
-        {children}
-        <footer >Footer</footer>
+        {/* <Provider store={store}> */}
+          <Header></Header>
+          {children}
+          <footer >Footer</footer>
+        {/* </Provider> */}
       </body>
     </html>
   );

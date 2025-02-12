@@ -3,19 +3,21 @@ import { Card,Tag, Pagination   } from 'antd';
 import { fetchData } from '../api';
 import { EyeOutlined, StarFilled,StarOutlined } from '@ant-design/icons';
 
+
 export default async function Home() {
 
   const pageConfig = {
     page: 1,
     pagesize: 10
   }
-  const { rows: bookData, count } = await fetchData('/book',{
+  const { rows: bookData, count } = await fetchData('/article',{
     query: {
       ...pageConfig
     }
   })
 
   const pageChange = (page,pageSize)=>{
+    console.log(page,pageSize)
   }
   console.log(bookData)
 
@@ -25,7 +27,7 @@ export default async function Home() {
 
   const bookList = bookData.map(item => (
     <Card className="mt-3 cursor-pointer hover:bg-gray-100" key={item.id}>
-      <div className="font-bold text-base">{item.name}</div>
+      <div className="font-bold text-base">{item.title}</div>
       <div className="mt-2 text-sm text-zinc-600 line-clamp-3">{ item.description }</div>
       <div className="mt-2 text-xs">
         <span className="mr-3">{ item.author }</span>

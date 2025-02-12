@@ -1,4 +1,5 @@
 // api.js
+import Cookies from "js-cookie"
 export async function fetchData(url, options = {}) {
     if (process.env.NODE_ENV === 'development') {
         console.log('当前处于开发环境',process.env.NEXT_PUBLIC_API_URL);
@@ -9,10 +10,12 @@ export async function fetchData(url, options = {}) {
         method: 'GET',
         credentials: 'include',// 发送跨域请求时携带 Cookie
         headers: {
-            'authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6IjE1MTEzMTA2OTc1IiwicGFzc3dvcmQiOiIxMjM0IiwiaWQiOjE5LCJpYXQiOjE3Mzc3MDcxNDksImV4cCI6MTczODEzOTE0OX0.KvwlbgI08hiV8G_xXrRsgrhSU7fp7ZEevXpdZvZgV4E'
+            'authorization': ''
         }
     };
-
+    if (typeof window === 'object') {
+        defaultOptions.headers.authorization = Cookies.get('authorization')
+    }
 
 
     if(options.body){

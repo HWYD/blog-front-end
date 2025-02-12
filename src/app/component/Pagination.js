@@ -1,6 +1,6 @@
 'use client';
 
-import {  Pagination   } from 'antd';
+import { Pagination } from 'antd';
 const [pageConfig,setPageConfig] = useState({
     page: 1,
     pagesize: 20
