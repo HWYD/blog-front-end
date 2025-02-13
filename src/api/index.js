@@ -29,6 +29,7 @@ export async function fetchData(url, options = {}) {
     const mergedOptions = {
        ...defaultOptions,
       ...options,
+      next: { revalidate: 60 }
     };
 
     console.log('mergedOptions',mergedOptions)
