@@ -2,19 +2,33 @@
 import { Button, Checkbox, Form, Input, Flex } from 'antd';
 import { fetchData } from '../../api';
 import { useRouter } from 'next/navigation'
+import React, { useState,useEffect } from 'react';
+
+import dynamic from 'next/dynamic'
+import { Suspense } from 'react'
+
+const EditorComp = dynamic(() => import('../component/Editor'), { ssr: false })
+// const markdown = `
+// Hello **world**!
+// `
 
 const { TextArea } = Input;
 
-// console.log('useNavigate:', useRouter); 
+
 export default function drafts(){
+    const [markdown, setMarkdown] = useState('Hello **world');
+
     const router = useRouter()
     const onFinish = (values) =>{
-        console.log(values)
+        console.log(values,markdown)
         const fetchDataFromAPI = async () => {
             try {
                 const data = await fetchData('/article',{
                     method: 'POST',
-                    body: values
+                    body: {
+                        ...values,
+                        content: markdown
+                    }
                 });
                 router.push('/');
             } catch (error) {
@@ -27,7 +41,8 @@ export default function drafts(){
     }
     return (
         <div className='w-screen h-screen flex justify-center items-center'>
-        <Form
+         <div>
+         <Form
         name="drafts"
         layout="vertical"
         initialValues={{
@@ -75,14 +90,13 @@ export default function drafts(){
         <Form.Item
             name="content"
             label="内容"
-            rules={[
-            {
-                required: true,
-                message: 'Please input content!',
-            },
-            ]}
         >
-            <TextArea rows={4} />
+            {/* <TextArea rows={4} /> */}
+            <div className='border border-slate-300 min-h-[400px]'>
+                <Suspense fallback={null}>
+                    <EditorComp markdown={markdown} onUpdate={setMarkdown}/>
+                </Suspense>
+            </div>
         </Form.Item>
 
         <Form.Item>
@@ -91,6 +105,8 @@ export default function drafts(){
             </Button>
         </Form.Item>
         </Form>
+        
+        </div>
     </div>
     )
 }

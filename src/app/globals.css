@@ -25,3 +25,5 @@ body {
     text-wrap: balance;
   }
 }
+
+@import '../../node_modules/@mdxeditor/editor/dist/style.css';
