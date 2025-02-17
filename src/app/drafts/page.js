@@ -48,7 +48,7 @@ export default function drafts(){
         initialValues={{
             remember: true,
         }}
-        className='w-[300px]'
+        className='w-[400px]'
         onFinish={onFinish}
         >
         <Form.Item
@@ -92,7 +92,7 @@ export default function drafts(){
             label="内容"
         >
             {/* <TextArea rows={4} /> */}
-            <div className='border border-slate-300 min-h-[400px]'>
+            <div className='border border-slate-300 min-h-[400px] md-editor'>
                 <Suspense fallback={null}>
                     <EditorComp markdown={markdown} onUpdate={setMarkdown}/>
                 </Suspense>
