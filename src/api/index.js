@@ -10,7 +10,7 @@ export async function fetchData(url, options = {}) {
         method: 'GET',
         credentials: 'include',// 发送跨域请求时携带 Cookie
         headers: {
-            'authorization': ''
+            'authorization': options.authorization || ''
         }
     };
     if (typeof window === 'object') {
@@ -32,7 +32,7 @@ export async function fetchData(url, options = {}) {
       next: { revalidate: 60 }
     };
 
-    console.log('mergedOptions',mergedOptions)
+    // console.log('mergedOptions',mergedOptions)
 
     const apiUrl = process.env.NEXT_PUBLIC_API_URL + url
     try {

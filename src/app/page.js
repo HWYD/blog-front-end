@@ -3,14 +3,20 @@ import { Card,Tag, Pagination   } from 'antd';
 import { fetchData } from '../api';
 import { EyeOutlined, StarFilled,StarOutlined } from '@ant-design/icons';
 
-import ArticleList from "./component/ArticleList";
+import { cookies } from 'next/headers'
 
+import ArticleList from "./component/ArticleList";
+// import { getSession } from "next-auth/react";
 
 export default async function Home() {
-
+  const cookieStore = cookies()
+  const authorization = cookieStore.get('authorization').value || ''
+  // const session = await getSession()
+  // console.log('session',session)
   const pageConfig = {
     page: 1,
-    pagesize: 10
+    pagesize: 10,
+    authorization
   }
   const { rows: articleData, count } = await fetchData('/article',{
     query: {
@@ -21,7 +27,7 @@ export default async function Home() {
   const pageChange = (page,pageSize)=>{
     console.log(page,pageSize)
   }
-  console.log(articleData)
+  // console.log(articleData)
 
   const handleCollect = () =>{
     console.log(1)
@@ -46,6 +52,7 @@ export default async function Home() {
 
   return (
       <div className="max-w-[1200px] mx-auto mt-4">
+        <div>{authorization}</div>
         <ArticleList articleData={articleData}></ArticleList>
         <div className="mt-4 flex justify-center">
           <Pagination defaultCurrent={6} total={500}/>
