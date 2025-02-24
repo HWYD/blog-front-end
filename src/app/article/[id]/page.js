@@ -14,15 +14,21 @@ export default async function article(context) {
       authorization
     })
 
-  // console.log('想去23',articleData)
+  console.log('想去23',articleData)
 
     return (
-      <div className="max-w-[1200px] mx-auto mt-4">
-        <div>{articleData.title}</div>
-        <div>
-            <ReactMarkdown>
-                {articleData.content}
-            </ReactMarkdown>
+      <div className="max-w-[1200px] mx-auto mt-4 hz-article">
+        <div className='bg-white p-5'>
+          <h1 className='mb-4'>{articleData.title}</h1>
+          <div className='flex items-center text-sm mb-4'>
+            <span className='text-gray-800'>{ articleData.author }</span>
+            <span className='ml-2 text-gray-600'>{ articleData.create_time}</span>
+          </div>
+          <div>
+              <ReactMarkdown>
+                  {articleData.content}
+              </ReactMarkdown>
+          </div>
         </div>
       </div>
     )

@@ -52,7 +52,7 @@ export default async function Home() {
 
   return (
       <div className="max-w-[1200px] mx-auto mt-4">
-        <div>{authorization}</div>
+        {/* <div>{authorization}</div> */}
         <ArticleList articleData={articleData}></ArticleList>
         <div className="mt-4 flex justify-center">
           <Pagination defaultCurrent={6} total={500}/>

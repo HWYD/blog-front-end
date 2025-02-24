@@ -1,6 +1,8 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import Header from './component/Header'
+import Footer from './component/Footer'
+
 // import { Provider } from 'react-redux';
 // import makeStore from '@/store';
 // import { useMemo } from 'react';
@@ -30,8 +32,10 @@ export default function RootLayout({ children }) {
       >
         {/* <Provider store={store}> */}
           <Header></Header>
-          {children}
-          <footer >Footer</footer>
+          <div className="min-h-96">
+            {children}
+          </div>
+          <Footer></Footer>
         {/* </Provider> */}
       </body>
     </html>

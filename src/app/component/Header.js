@@ -1,12 +1,15 @@
 import { Button  } from 'antd';
 import Link from 'next/link'
 import { UserOutlined } from '@ant-design/icons';
+import { cookies } from 'next/headers'
 // import { useSelector, useDispatch } from 'react-redux';
 // import { login, logout } from '@/store/authSlice';
 
 export default function Header(){
     // const isLogin = useSelector((state) => state.auth.isLogin);
     // const dispatch = useDispatch();
+    const cookieStore = cookies()
+    const authorization = cookieStore.get('authorization')?.value || ''
     return (
         <>
         {/* <Provider store={store}> */}
@@ -15,8 +18,10 @@ export default function Header(){
                         <Link href="/"><img src='/image/logo.png' className="w-12"></img></Link>
                     <div>
                         <Link href="/drafts"><Button type="primary" className='mr-3'>创作</Button></Link>
-                        <Link href="/login"  className='mr-3'><Button>登录</Button></Link>
-                        <Link href="/user/123"><UserOutlined/></Link>
+                        {
+                            authorization? <Link href="/user/123"><UserOutlined/></Link>: 
+                            <Link href="/login"  className='mr-3'><Button>登录</Button></Link>
+                            }
                     </div>
                 </div>
             </header>

@@ -28,7 +28,7 @@ body {
 
 @import '../../node_modules/@mdxeditor/editor/dist/style.css';
 
-.md-editor{
+.hz-article{
   h1{
       font-size: 24px;
       font-weight: bold;
