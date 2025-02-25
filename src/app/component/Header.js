@@ -4,6 +4,7 @@ import { UserOutlined } from '@ant-design/icons';
 import { cookies } from 'next/headers'
 // import { useSelector, useDispatch } from 'react-redux';
 // import { login, logout } from '@/store/authSlice';
+import UserProfile from './UserProfile'
 
 export default function Header(){
     // const isLogin = useSelector((state) => state.auth.isLogin);
@@ -18,10 +19,11 @@ export default function Header(){
                         <Link href="/"><img src='/image/logo.png' className="w-12"></img></Link>
                     <div>
                         <Link href="/drafts"><Button type="primary" className='mr-3'>创作</Button></Link>
-                        {
+                        {/* {
                             authorization? <Link href="/user/123"><UserOutlined/></Link>: 
                             <Link href="/login"  className='mr-3'><Button>登录</Button></Link>
-                            }
+                            } */}
+                            <UserProfile/>
                     </div>
                 </div>
             </header>

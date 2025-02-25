@@ -5,9 +5,20 @@ import { Button, Checkbox, Form, Input, Flex } from 'antd';
 import { fetchData } from '../../api';
 import { useRouter } from 'next/navigation'
 import Cookies from "js-cookie"
+import {
+    setLoginStatus,
+    selectAuth,
+  } from "@/store/authSlice";
+import { AppDispatch } from "@/store/index";
+import { useDispatch, useSelector } from "react-redux";
 
 const App = (isModalOpen) => {
     const router = useRouter()
+    // const isLogin = useSelector(selectAuth);
+    const dispatch = useDispatch();
+    const toSetLoginStatus = (status) => {
+        dispatch(setLoginStatus(status))
+      };
     const onFinish = (values) => {
     const fetchDataFromAPI = async () => {
         console.log(process.env.NEXT_PUBLIC_API_URL)
@@ -19,8 +30,10 @@ const App = (isModalOpen) => {
             Cookies.set("authorization", token, {
                 expires: 360
             })
+            toSetLoginStatus(true)
             router.push('/')
         } catch (error) {
+            toSetLoginStatus(false)
             console.error('Failed to fetch data:', error);
         }
     };

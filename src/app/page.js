@@ -1,21 +1,24 @@
 import Image from "next/image";
-import { Card,Tag, Pagination   } from 'antd';
+import { Card,Tag   } from 'antd';
 import { fetchData } from '../api';
 import { EyeOutlined, StarFilled,StarOutlined } from '@ant-design/icons';
 
 import { cookies } from 'next/headers'
 
 import ArticleList from "./component/ArticleList";
+import Pagination from "./component/Pagination";
+
 // import { getSession } from "next-auth/react";
 
-export default async function Home() {
+export default async function Home(context) {
+  const { searchParams } = context
   const cookieStore = cookies()
-  const authorization = cookieStore.get('authorization').value || ''
+  const authorization = cookieStore.get('authorization')?.value || ''
   // const session = await getSession()
   // console.log('session',session)
   const pageConfig = {
-    page: 1,
-    pagesize: 10,
+    page: searchParams.page || 1,
+    pagesize: searchParams.pageSize|| 10,
     authorization
   }
   const { rows: articleData, count } = await fetchData('/article',{
@@ -24,14 +27,6 @@ export default async function Home() {
     }
   })
 
-  const pageChange = (page,pageSize)=>{
-    console.log(page,pageSize)
-  }
-  // console.log(articleData)
-
-  const handleCollect = () =>{
-    console.log(1)
-  }
 
   // const articleList = articleData.map(item => (
   //   <Card className="mt-3 cursor-pointer hover:bg-gray-100" key={item.id}>
@@ -55,7 +50,7 @@ export default async function Home() {
         {/* <div>{authorization}</div> */}
         <ArticleList articleData={articleData}></ArticleList>
         <div className="mt-4 flex justify-center">
-          <Pagination defaultCurrent={6} total={500}/>
+          <Pagination defaultCurrent={pageConfig.page} total={500}/>
         </div>
       </div>
   );

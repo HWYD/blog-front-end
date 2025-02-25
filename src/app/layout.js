@@ -4,8 +4,9 @@ import Header from './component/Header'
 import Footer from './component/Footer'
 
 // import { Provider } from 'react-redux';
-// import makeStore from '@/store';
+// import { wrapper }  from '@/store';
 // import { useMemo } from 'react';
+import { ReduxProvider } from "@/store";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -30,13 +31,15 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {/* <Provider store={store}> */}
-          <Header></Header>
-          <div className="min-h-96">
-            {children}
-          </div>
-          <Footer></Footer>
-        {/* </Provider> */}
+         <ReduxProvider>
+            {/* <> */}
+            <Header></Header>
+            <div className="min-h-96">
+              {children}
+            </div>
+            <Footer></Footer>
+         {/* </> */}
+         </ReduxProvider>
       </body>
     </html>
   );
