@@ -1,12 +1,12 @@
 import Image from "next/image";
 import { Card,Tag   } from 'antd';
-import { fetchData } from '../api';
+import { fetchData } from '@/api';
 import { EyeOutlined, StarFilled,StarOutlined } from '@ant-design/icons';
 
 import { cookies } from 'next/headers'
 
-import ArticleList from "./component/ArticleList";
-import Pagination from "./component/Pagination";
+import ArticleList from "@/app/component/ArticleList";
+import Pagination from "@/app/component/Pagination";
 
 // import { getSession } from "next-auth/react";
 

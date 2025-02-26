@@ -1,6 +1,6 @@
 'use client';
 import { Button, Checkbox, Form, Input, Flex } from 'antd';
-import { fetchData } from '../../api';
+import { fetchData } from '@/api';
 import { useRouter } from 'next/navigation'
 import React, { useState,useEffect } from 'react';
 
@@ -8,7 +8,7 @@ import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
 import "./drafts.css";
 
-const EditorComp = dynamic(() => import('../component/Editor'), { ssr: false })
+const EditorComp = dynamic(() => import('../../component/Editor'), { ssr: false })
 // const markdown = `
 // Hello **world**!
 // `
