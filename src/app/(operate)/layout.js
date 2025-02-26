@@ -15,7 +15,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   // const store = useMemo(() => makeStore(), []);
   return (
-    <html lang="en">
+    <html lang="zh">
       <body>
          {/* <ReduxProvider> */}
             {/* <> */}
