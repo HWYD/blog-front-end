@@ -9,15 +9,15 @@ export default async function article(context) {
     const params = {
         id: context.params.id
     };
-    const searchParams = new URLSearchParams(params);
-    const articleData  = await fetchData(`/article_one?${searchParams.toString()}`,{
+    const queryParams = new URLSearchParams(params);
+    const articleData  = await fetchData(`/article_one?${queryParams.toString()}`,{
       authorization
     })
 
   console.log('想去23',articleData)
 
     return (
-      <div className="max-w-[1200px] mx-auto mt-4 hz-article">
+      <div className="max-w-[1200px] mx-auto mt-4 mdxeditor-doc">
         <div className='bg-white p-5'>
           <h1 className='mb-4'>{articleData.title}</h1>
           <div className='flex items-center text-sm mb-4'>

@@ -9,14 +9,16 @@ import { MDXEditor,
      toolbarPlugin,
      CodeToggle,
      DiffSourceToggleWrapper,
+     ListsToggle,
+     InsertTable,
      listsPlugin,
-    quotePlugin,
-    thematicBreakPlugin,
-    markdownShortcutPlugin,
+     quotePlugin,
+     thematicBreakPlugin,
+     markdownShortcutPlugin,
+     tablePlugin,
      } from "@mdxeditor/editor";
 import { FC } from "react";
 import '@mdxeditor/editor/style.css'
-
 
 
 const Editor = ({ markdown, onUpdate,editorRef }) => {
@@ -25,6 +27,7 @@ const Editor = ({ markdown, onUpdate,editorRef }) => {
     <MDXEditor
       onChange={(e) => onUpdate(e)}
       ref={editorRef}
+      scrollable={true}
       markdown={markdown}
       plugins={[
         headingsPlugin(),
@@ -32,6 +35,7 @@ const Editor = ({ markdown, onUpdate,editorRef }) => {
         quotePlugin(),
         thematicBreakPlugin(),
         markdownShortcutPlugin(),
+        tablePlugin(),
         toolbarPlugin({
             toolbarContents: () => (
               <>
@@ -39,6 +43,9 @@ const Editor = ({ markdown, onUpdate,editorRef }) => {
                 <UndoRedo />
                 <BoldItalicUnderlineToggles />
                 <CodeToggle/>
+                <ListsToggle/>
+                <InsertTable/>
+                <BlockTypeSelect/>
                 <DiffSourceToggleWrapper/>
               </>
             )

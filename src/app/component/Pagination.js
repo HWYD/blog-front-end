@@ -6,12 +6,12 @@ import { Pagination } from 'antd';
 //     pagesize: 20
 //   })
 
-export default function Pagepagination({defaultCurrent,total}){
+export default function Pagepagination({defaultCurrent,pageSize,total}){
   const router = useRouter()
     const onChange =(page, pageSize)=>{
       router.push(`/?page=${page}&pageSize=${pageSize}`)
     }
     return (
-      <Pagination  defaultCurrent={defaultCurrent}  total={total} className="mx-auto" onChange={onChange}>
+      <Pagination  defaultCurrent={defaultCurrent} pageSize={pageSize}  total={total} className="mx-auto" onChange={onChange}>
       </Pagination>)
 }

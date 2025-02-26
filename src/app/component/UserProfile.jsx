@@ -2,19 +2,20 @@
 import Link from 'next/link'
 import { Button  } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
-import {
-    setLoginStatus,
-    selectAuth,
-  } from "@/store/authSlice";
-import { AppDispatch } from "@/store/index";
+// import {
+//     setLoginStatus,
+//     selectAuth,
+//   } from "../../store/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function UserProfile(){
-    const isLogin = useSelector(selectAuth);
-    const dispatch = useDispatch();
-    const handleChangeCounter = (status) => {
-        dispatch(setLoginStatus(status))
-      };
+    const isLogin = true;
+
+    // const isLogin = useSelector(selectAuth);
+    // const dispatch = useDispatch();
+    // const handleChangeCounter = (status) => {
+    //     dispatch(setLoginStatus(status))
+    //   };
     return (
         <>
             {/* <div>

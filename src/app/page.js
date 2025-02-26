@@ -21,10 +21,8 @@ export default async function Home(context) {
     pagesize: searchParams.pageSize|| 10,
     authorization
   }
-  const { rows: articleData, count } = await fetchData('/article',{
-    query: {
-      ...pageConfig
-    }
+  const queryParams = new URLSearchParams(pageConfig);
+  const { rows: articleData, count } = await fetchData(`/article?${queryParams.toString()}`,{
   })
 
 
@@ -50,7 +48,7 @@ export default async function Home(context) {
         {/* <div>{authorization}</div> */}
         <ArticleList articleData={articleData}></ArticleList>
         <div className="mt-4 flex justify-center">
-          <Pagination defaultCurrent={pageConfig.page} total={500}/>
+          <Pagination defaultCurrent={pageConfig.page} pageSize={pageConfig.pageSize} total={count}/>
         </div>
       </div>
   );

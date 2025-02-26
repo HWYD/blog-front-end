@@ -6,7 +6,7 @@ import Footer from './component/Footer'
 // import { Provider } from 'react-redux';
 // import { wrapper }  from '@/store';
 // import { useMemo } from 'react';
-import { ReduxProvider } from "@/store";
+// import { ReduxProvider } from "@/store";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -31,7 +31,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-         <ReduxProvider>
+         {/* <ReduxProvider> */}
             {/* <> */}
             <Header></Header>
             <div className="min-h-96">
@@ -39,7 +39,7 @@ export default function RootLayout({ children }) {
             </div>
             <Footer></Footer>
          {/* </> */}
-         </ReduxProvider>
+         {/* </ReduxProvider> */}
       </body>
     </html>
   );

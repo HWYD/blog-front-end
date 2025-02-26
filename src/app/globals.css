@@ -24,13 +24,76 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+  .mdxeditor-doc{
+    h1 {
+      font-size: 2em;
+      font-weight: bold;
+      margin: 0.67em 0;
+    }
+    h2 {
+      font-size: 1.5em;
+      font-weight: bold;
+      margin: 0.75em 0;
+    }
+    h3 {
+      font-size: 1.17em;
+      font-weight: bold;
+      margin: 0.83em 0;
+    }
+    h4 {
+      font-size: 1em;
+      font-weight: bold;
+      margin: 1.12em 0;
+    }
+    h5 {
+      font-size: 0.83em;
+      font-weight: bold;
+      margin: 1.5em 0;
+    }
+    h6 {
+      font-size: 0.67em;
+      font-weight: bold;
+      margin: 2.33em 0;
+    }
+    p {
+      font-size: 16px;
+      line-height: normal;
+      margin: 1em 0;
+    }
+    a {
+      text-decoration: underline;
+      color: blue;
+      cursor: pointer;
+    }
+    a:hover {
+      color: darkblue;
+    }
+    ul {
+      list-style-type: disc;
+      padding-left: 40px;
+    }
+    ol {
+      list-style-type: decimal;
+      padding-left: 40px;
+    }
+    table {
+      border-collapse: separate;
+      border-spacing: 2px;
+    }
+    th {
+      text-align: center;
+      padding: 6px 13px;
+    }
+    td {
+      text-align: left;
+      padding: 6px 13px;
+    }
+    input {
+      border: 1px solid #ccc;
+      background-color: white;
+    }
+  }
 }
 
 @import '../../node_modules/@mdxeditor/editor/dist/style.css';
 
-.hz-article{
-  h1{
-      font-size: 24px;
-      font-weight: bold;
-  }
-}

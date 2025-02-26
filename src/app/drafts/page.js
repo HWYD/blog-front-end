@@ -6,6 +6,7 @@ import React, { useState,useEffect } from 'react';
 
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
+import "./drafts.css";
 
 const EditorComp = dynamic(() => import('../component/Editor'), { ssr: false })
 // const markdown = `
@@ -40,30 +41,32 @@ export default function drafts(){
         fetchDataFromAPI();
     }
     return (
-        <div className='w-screen h-screen flex justify-center items-center'>
-         <div>
+        <div className='flex justify-center mx-auto w-full 2xl:max-w-[1280px] px-3 box-border'>
          <Form
-        name="drafts"
-        layout="vertical"
-        initialValues={{
-            remember: true,
-        }}
-        className='w-[400px]'
-        onFinish={onFinish}
-        >
-        <Form.Item
-            name="title"
-            label="文章标题"
-            rules={[
-            {
-                required: true,
-                message: 'Please input name!',
-            },
-            ]}
-        >
-            <Input placeholder="phone" />
-        </Form.Item>
-        <Form.Item
+            name="drafts"
+            layout="vertical"
+            initialValues={{
+                remember: true,
+            }}
+            className='mt-5 w-full h-full'
+            onFinish={onFinish}
+            >
+            <Form.Item
+                name="title"
+                label=""
+                rules={[
+                {
+                    required: true,
+                    message: '请输入文章标题!',
+                },
+                ]}
+            >
+            <div className='flex justify-between items-center'>
+                <Input placeholder="输入文章标题..." variant="borderless"  size="large" className='text-xl font-bold'/>
+                <Button type="primary" htmlType="submit">发布</Button>
+            </div>
+         </Form.Item>
+        {/* <Form.Item
             name="cover"
             label="封面"
             rules={[
@@ -74,8 +77,8 @@ export default function drafts(){
             ]}
         >
             <Input placeholder="cover" />
-        </Form.Item>
-        <Form.Item
+        </Form.Item> */}
+        {/* <Form.Item
             name="description"
             label="简介"
             rules={[
@@ -86,27 +89,26 @@ export default function drafts(){
             ]}
         >
             <Input placeholder="description" />
-        </Form.Item>
+        </Form.Item> */}
         <Form.Item
             name="content"
-            label="内容"
+            label=""
         >
             {/* <TextArea rows={4} /> */}
-            <div className='border border-slate-300 min-h-[400px] md-editor'>
+            <div className=' w-full min-h-[400px] max-h-[650px] overflow-auto mdxeditor-doc'>
                 <Suspense fallback={null}>
                     <EditorComp markdown={markdown} onUpdate={setMarkdown}/>
                 </Suspense>
             </div>
         </Form.Item>
 
-        <Form.Item>
+        {/* <Form.Item>
             <Button block type="primary" htmlType="submit">
              提交
             </Button>
-        </Form.Item>
+        </Form.Item> */}
         </Form>
         
-        </div>
     </div>
     )
 }
