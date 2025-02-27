@@ -2,7 +2,7 @@
 
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Form, Input, Flex } from 'antd';
-import { fetchData } from '../../api';
+import { fetchData } from '@/app/api';
 import { useRouter } from 'next/navigation'
 import Cookies from "js-cookie"
 import {
