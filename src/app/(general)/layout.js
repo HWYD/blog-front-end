@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
             <div className="min-h-96">
               {children}
             </div>
-            <Footer></Footer>
+            {/* <Footer></Footer> */}
          {/* </> */}
          {/* </ReduxProvider> */}
       </body>

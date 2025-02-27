@@ -9,15 +9,12 @@ import { Suspense } from 'react'
 import "./drafts.css";
 
 const EditorComp = dynamic(() => import('../../component/Editor'), { ssr: false })
-// const markdown = `
-// Hello **world**!
-// `
 
 const { TextArea } = Input;
 
 
 export default function drafts(){
-    const [markdown, setMarkdown] = useState('Hello **world');
+    const [markdown, setMarkdown] = useState('');
 
     const router = useRouter()
     const onFinish = (values) =>{
@@ -28,7 +25,10 @@ export default function drafts(){
                     method: 'POST',
                     body: {
                         ...values,
-                        content: markdown
+                        content: markdown,
+                        description: '描述',
+                        cover: 'dsag',
+
                     }
                 });
                 router.push('/');

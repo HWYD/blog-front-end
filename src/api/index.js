@@ -17,7 +17,6 @@ export async function fetchData(url, options = {}) {
         defaultOptions.headers.authorization = Cookies.get('authorization')
     }
 
-
     if(options.body){
         const formData = new FormData();
         Object.entries(options.body).forEach(([key, value]) => {
@@ -29,7 +28,7 @@ export async function fetchData(url, options = {}) {
     const mergedOptions = {
        ...defaultOptions,
       ...options,
-      next: { revalidate: 60 }
+      cache: 'no-store' 
     };
 
     // console.log('mergedOptions',mergedOptions)
