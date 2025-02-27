@@ -6,6 +6,7 @@ import UserProfile from './UserProfile'
 export default function Header(){
     const cookieStore = cookies()
     const authorization = cookieStore.get('authorization')?.value || ''
+    const loginStatus = !!authorization
     return (
         <>
             <header className="py-2 bg-white">
@@ -13,7 +14,7 @@ export default function Header(){
                         <Link href="/"><img src='/image/logo.png' className="w-12"></img></Link>
                     <div>
                         <Link href="/drafts"><Button type="primary" className='mr-3'>创作</Button></Link>
-                            <UserProfile/>
+                            <UserProfile loginStatus={loginStatus} />
                     </div>
                 </div>
             </header>

@@ -8,21 +8,13 @@ import {
   } from "../../store/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 
-export default function UserProfile(){
-    // const isLogin = true;
-
-    const isLogin = useSelector(selectAuth);
+export default function UserProfile({loginStatus}){
     const dispatch = useDispatch();
-    const handleChangeCounter = (status) => {
-        dispatch(setLoginStatus(status))
-      };
+    dispatch(setLoginStatus(loginStatus))
+    const isLogin = useSelector(selectAuth);
+
     return (
         <>
-            {/* <div>
-                <Button onClick={() => handleChangeCounter(true)}>加</Button>
-                <Button onClick={() => handleChangeCounter(false)}>减</Button>
-                {isLogin? '登录了':'没有登录'}
-            </div> */}
             {
             isLogin? <Link href="/user/123"><UserOutlined/></Link>: 
             <Link href="/login"  className='mr-3'><Button>登录</Button></Link>

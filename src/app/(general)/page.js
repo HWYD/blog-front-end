@@ -1,9 +1,5 @@
-import Image from "next/image";
-import { Card,Tag   } from 'antd';
 import { fetchData } from '@/api';
-
 import { cookies } from 'next/headers'
-
 import ArticleList from "@/app/component/ArticleList";
 import Pagination from "@/app/component/Pagination";
 
@@ -11,8 +7,6 @@ export default async function Home(context) {
   const { searchParams } = context
   const cookieStore = cookies()
   const authorization = cookieStore.get('authorization')?.value || ''
-  // const session = await getSession()
-  console.log('session12',authorization)
   const pageConfig = {
     page: searchParams.page || 1,
     pagesize: searchParams.pageSize|| 10,
