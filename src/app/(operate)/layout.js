@@ -15,18 +15,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   // const store = useMemo(() => makeStore(), []);
   return (
-    <html lang="zh">
-      <body>
-         {/* <ReduxProvider> */}
-            {/* <> */}
-            {/* <Header></Header>
-            <div className="min-h-96"> */}
-              {children}
-            {/* </div> */}
-            {/* <Footer></Footer> */}
-         {/* </> */}
-         {/* </ReduxProvider> */}
-      </body>
-    </html>
+    // <html lang="zh">
+    //   <body>
+    <>
+      {children}
+    </>
+    //   </body>
+    // </html>
   );
 }

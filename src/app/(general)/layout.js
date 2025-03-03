@@ -3,13 +3,15 @@ import Header from '@/app/component/Header'
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body>
+    // <html lang="zh">
+    //   <body>
+        <>
             <Header></Header>
             <div className="min-h-96">
               {children}
             </div>
-      </body>
-    </html>
+        </>
+    //   </body>
+    // </html>
   );
 }

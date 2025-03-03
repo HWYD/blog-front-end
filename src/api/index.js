@@ -19,9 +19,25 @@ export async function fetchData(url, options = {}) {
 
     if(options.body){
         const formData = new FormData();
-        Object.entries(options.body).forEach(([key, value]) => {
-            formData.append(key, value);
-        });
+        // Object.entries(options.body).forEach(([key, value]) => {
+        //     formData.append(key, value);
+        // });
+        // options.body = formData
+        // 遍历对象的属性
+        const data = options.body
+        for (const key in data) {
+            if (data.hasOwnProperty(key)) {
+                if (Array.isArray(data[key])) {
+                    // 如果属性是数组，将数组的每个元素分别添加到 FormData 中
+                    data[key].forEach((item) => {
+                        formData.append(key, item);
+                    });
+                } else {
+                    // 如果属性不是数组，直接添加到 FormData 中
+                    formData.append(key, data[key]);
+                }
+            }
+        }
         options.body = formData
     }
 
@@ -30,6 +46,7 @@ export async function fetchData(url, options = {}) {
       ...options,
       cache: 'no-store' 
     };
+
 
     // console.log('mergedOptions',mergedOptions)
 
