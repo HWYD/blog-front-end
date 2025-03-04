@@ -45,9 +45,6 @@ const App = (isModalOpen) => {
     <div className='w-screen h-screen flex justify-center items-center'>
         <Form
         name="login"
-        initialValues={{
-            remember: true,
-        }}
         className='w-[300px]'
         onFinish={onFinish}
         >
@@ -56,7 +53,7 @@ const App = (isModalOpen) => {
             rules={[
             {
                 required: true,
-                message: 'Please input your phone!',
+                message: '请输入手机号!',
             },
             ]}
         >
@@ -67,26 +64,20 @@ const App = (isModalOpen) => {
             rules={[
             {
                 required: true,
-                message: 'Please input your Password!',
+                message: '请输入密码!',
             },
             ]}
         >
             <Input prefix={<LockOutlined />} type="password" placeholder="Password" />
         </Form.Item>
-        <Form.Item>
-            <Flex justify="space-between" align="center">
-            <Form.Item name="remember" valuePropName="checked" noStyle>
-                <Checkbox>Remember me</Checkbox>
-            </Form.Item>
-            <a href="">Forgot password</a>
-            </Flex>
-        </Form.Item>
 
         <Form.Item>
             <Button block type="primary" htmlType="submit">
-            Log in
+                登录
             </Button>
-            or <a href="">Register now!</a>
+            <div className='mt-3'>
+                <span className='text-gray-500'>没有账号？</span><a href="/register" className='text-blue-500'>立即注册</a>
+            </div>
         </Form.Item>
         </Form>
     </div>
