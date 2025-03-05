@@ -3,8 +3,11 @@ import { Tabs } from 'antd';
 import ArticleList from "@/app/component/ArticleList"
 import { fetchData } from '@/api';
 import { useState,useEffect } from 'react';
+import { setLoginStatus } from "@/store/authSlice";
+import { useDispatch } from "react-redux";
 
 export default function User(context) {
+  const dispatch = useDispatch();
   const pageConfig = {
     page: 1,
     pagesize: 1000
@@ -13,8 +16,16 @@ export default function User(context) {
 
   const [articleData,setArticleData] =  useState([])
   const fetchMyArticles = async()=>{
-    const { rows } = await fetchData(`/self_article?${searchParams.toString()}`,{})
-    setArticleData(rows)
+    try {
+      const { rows } = await fetchData(`/self_article?${searchParams.toString()}`,{})
+      setArticleData(rows)
+    } catch (error) {
+      console.log('error',error)
+      if(error.message == 403){
+        console.log('llo胡hi哦')
+        dispatch(setLoginStatus(false))
+      }
+    }
   }
 
   const [collectArticles,setCollectArticles] =  useState([])

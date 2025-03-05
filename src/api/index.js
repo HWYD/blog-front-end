@@ -64,9 +64,12 @@ export async function fetchData(url, options = {}) {
         if(result.code == 200){
             return result.data
         }
+        if(result.code == 403){
+            throw new Error('403');
+        }
         return null;
     } catch (error) {
-        console.error('Fetch error:', error);
+        // console.error('Fetch error:', error);
         throw error;
     }
 }
