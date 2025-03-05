@@ -4,10 +4,10 @@ import ArticleList from "@/app/component/ArticleList"
 import { fetchData } from '@/api';
 import { useState,useEffect } from 'react';
 import { setLoginStatus } from "@/store/authSlice";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 
 export default function User(context) {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const pageConfig = {
     page: 1,
     pagesize: 1000
@@ -23,7 +23,7 @@ export default function User(context) {
       console.log('error',error)
       if(error.message == 403){
         console.log('llo胡hi哦')
-        dispatch(setLoginStatus(false))
+        // dispatch(setLoginStatus(false))
       }
     }
   }
