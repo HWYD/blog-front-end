@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 
 const ArticleList = ({ articleData }) => {
-    console.log('articleData',articleData)
+    // console.log('articleData',articleData)
   
     const articleListDom = articleData.map(item => (
         <Link href={`/article/${item.id}`}  key={item.id}>
