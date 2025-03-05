@@ -26,7 +26,7 @@ const ArticleList = ({ articleData }) => {
                   )) }
                   </div>
               </div>
-              { item.cover? <img src={process.env.NEXT_PUBLIC_API_URL + item.cover} className='max-w-40 rounded-md'/> : ''}
+              { item.cover? <img src={process.env.NEXT_PUBLIC_API_URL + item.cover} className='max-w-40 max-h-24 rounded-md'/> : ''}
             </div>
           </Card>
         </Link>
