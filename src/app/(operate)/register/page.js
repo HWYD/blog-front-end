@@ -7,8 +7,8 @@ import { fetchData } from '@/api';
 
 export default function Register() {
   const router = useRouter()
+  const [messageApi, contextHolder] = message.useMessage();
   const onFinish = (values) => {
-    // const [messageApi, contextHolder] = message.useMessage();
     console.log(values,'values')
     const fetchDataFromAPI = async () => {
         try {
@@ -16,11 +16,13 @@ export default function Register() {
                 method: 'POST',
                 body: values
             });
-            // messageApi.open({
-            //   type: 'success',
-            //   content: '注册成功',
-            // });
-            router.push('/login')
+            messageApi.open({
+              type: 'success',
+              content: '注册成功',
+            });
+            setTimeout(()=>{
+                router.push('/login')
+            },1000)
         } catch (error) {
             console.error('Failed to fetch data:', error);
         }
@@ -31,6 +33,7 @@ export default function Register() {
   };
   return (
     <div className='w-screen h-screen flex justify-center items-center'>
+        {contextHolder}
         <Form
         name="register"
         layout="vertical"

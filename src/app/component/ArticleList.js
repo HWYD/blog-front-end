@@ -5,11 +5,9 @@ import Link from 'next/link'
 
 
 const ArticleList = ({ articleData }) => {
-    // console.log('articleData',articleData)
-  
     const articleListDom = articleData.map(item => (
         <Link href={`/article/${item.id}`}  key={item.id}>
-          <Card className="mt-3 cursor-pointer hover:bg-gray-100">
+          <Card className="mt-3 cursor-pointer hover:bg-gray-50">
             <div className='flex justify-between'>
               <div>
                 <div className="font-bold text-base">{item.title}</div>
@@ -17,9 +15,6 @@ const ArticleList = ({ articleData }) => {
                 <div className="mt-2 text-xs">
                   <span className="mr-3">{ item.author }</span>
                   <span className="mr-3"><EyeOutlined /> { item.view_num }</span>
-                    {/* <span className="mr-3">
-                      { item.is_collected == 1? <StarFilled />: <StarOutlined />} { item.collect_num }
-                    </span> */}
                     <Collect data={item}/>
                   { item.Tags.map(tagItem => (
                     <Tag key={tagItem.id}>{tagItem.name}</Tag>
