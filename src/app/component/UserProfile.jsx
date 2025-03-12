@@ -1,29 +1,45 @@
 'use client';
 import Link from 'next/link'
-import { Button  } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
-// import {
-//     setLoginStatus,
-//     selectAuth,
-//   } from "../../store/authSlice";
-// import { useDispatch, useSelector } from "react-redux";
+import { Button, Dropdown  } from 'antd';
+import { UserOutlined, SmileOutlined } from '@ant-design/icons';
 import { useAuth } from '@/store/authContext';
+import { useRouter } from 'next/navigation'
 
 export default function UserProfile(){
+    const router = useRouter()
     const { loginStatus,logout } = useAuth();
-    // const dispatch = useDispatch();
-    // dispatch(setLoginStatus(loginStatus))
-    // const isLogin = useSelector(selectAuth);
     const toLogout = ()=>{
         logout()
+        router.push('/login')
     }
+    const items = [
+        {
+          key: '1',
+          label: (
+            <a href="/user">
+              我的主页
+            </a>
+          ),
+        },
+        {
+          key: '2',
+          label: (
+            <div onClick={toLogout}>
+              退出
+            </div>
+          )
+        }
+    ]
     return (
         <>
             {
-            loginStatus? <Link href="/user/123"><UserOutlined/></Link>: 
+            loginStatus? <Dropdown menu={{ items }} className='cursor-pointer'>
+                <a onClick={(e) => e.preventDefault()}>
+                    <UserOutlined/>
+                </a>
+            </Dropdown>: 
             <Link href="/login"  className='mr-3'><Button>登录</Button></Link>
             }
-            {/* <div onClick={toLogout}>退出</div> */}
         </>
     )
 }
