@@ -19,6 +19,7 @@ export default function drafts(){
     const [messageApi, contextHolder] = message.useMessage();
     const [form] = Form.useForm();
     const onFinish = () =>{
+        console.log('onFinish-markdown',markdown)
         if(!markdown){
             messageApi.info('文章内容不能为空!');
             return
@@ -30,11 +31,13 @@ export default function drafts(){
     const onPublish = async(options)=>{
         const fetchDataFromAPI = async () => {
             try {
+                console.log('markdown',markdown)
                 const data = await fetchData('/article',{
                     method: 'POST',
                     body: {
                         ...form.getFieldValue(),
-                        ...options
+                        ...options,
+                        content: markdown
                     }
                 });
                 messageApi.success('发布成功！');
