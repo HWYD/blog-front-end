@@ -12,7 +12,6 @@ export default async function RootLayout({ children }) {
     try {
         const { login_status } = await fetchData('/login-status',{ authorization });
         initialAuth = login_status
-        console.log('initialAuth69',login_status)
     } catch (error) {
         console.error('login_status', error);
     }
