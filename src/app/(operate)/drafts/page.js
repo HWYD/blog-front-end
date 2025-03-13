@@ -37,6 +37,7 @@ export default function drafts(){
                         ...options
                     }
                 });
+                messageApi.success('发布成功！');
             } catch (error) {
                 console.error('Failed to fetch data:', error);
             }
