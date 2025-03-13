@@ -17,7 +17,6 @@ import { MDXEditor,
      markdownShortcutPlugin,
      tablePlugin,
      } from "@mdxeditor/editor";
-import { FC } from "react";
 import '@mdxeditor/editor/style.css'
 
 
