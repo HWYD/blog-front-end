@@ -7,7 +7,7 @@ import { convertDate } from '@/utils'
 export default async function article(context) {
 
     const cookieStore = cookies()
-    const authorization = cookieStore.get('authorization').value || ''
+    const authorization = cookieStore.get('authorization')?.value || ''
     const params = {
         id: context.params.id
     };

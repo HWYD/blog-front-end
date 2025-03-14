@@ -10,7 +10,7 @@ export default function UserProfile(){
     const { loginStatus,logout } = useAuth();
     const toLogout = ()=>{
         logout()
-        router.push('/login')
+        // router.push('/login')
     }
     const items = [
         {
