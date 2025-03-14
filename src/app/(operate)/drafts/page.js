@@ -14,8 +14,24 @@ const EditorComp = dynamic(() => import('../../component/Editor'), { ssr: false 
 const { TextArea } = Input;
 
 
-export default function drafts(){
+export default function drafts(context){
+    console.log('context1',context)
+    const articleId = context.searchParams.id
     const [markdown, setMarkdown] = useState('');
+    const getArticleData = async()=>{
+        const params = {
+            id: articleId
+        };
+        const queryParams = new URLSearchParams(params);
+        const articleData = await fetchData(`/article_one?${queryParams.toString()}`,{})
+        setTimeout(setMarkdown(articleData.content))
+        console.log('articleData.content',articleData.content)
+    }
+    useEffect(()=>{
+        if(articleId){
+            getArticleData()
+        }
+    },[])
     const [messageApi, contextHolder] = message.useMessage();
     const [form] = Form.useForm();
     const onFinish = () =>{
