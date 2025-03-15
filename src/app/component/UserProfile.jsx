@@ -33,7 +33,7 @@ export default function UserProfile(){
     return (
         <>
             {
-            loginStatus? <Dropdown menu={{ items }} className='cursor-pointer'>
+            loginStatus? <Dropdown menu={{ items }} placement="bottomRight" className='cursor-pointer'>
                 <a onClick={(e) => e.preventDefault()}>
                     <UserOutlined/>
                 </a>

@@ -7,22 +7,9 @@ import { useRouter } from 'next/navigation'
 import Cookies from "js-cookie"
 import { useAuth } from '@/store/authContext';
 
-
-// import {
-//     setLoginStatus,
-//     selectAuth,
-//   } from "@/store/authSlice";
-// import { AppDispatch } from "@/store/index";
-// import { useDispatch, useSelector } from "react-redux";
-
 const App = (isModalOpen) => {
     const router = useRouter()
     const { login } = useAuth();
-    // const isLogin = useSelector(selectAuth);
-    // const dispatch = useDispatch();
-    // const toSetLoginStatus = (status) => {
-    //     dispatch(setLoginStatus(status))
-    //   };
     const onFinish = (values) => {
     const fetchDataFromAPI = async () => {
         console.log(process.env.NEXT_PUBLIC_API_URL)
@@ -35,7 +22,6 @@ const App = (isModalOpen) => {
                 expires: 360
             })
             login()
-            // toSetLoginStatus(true)
             router.push('/')
         } catch (error) {
             toSetLoginStatus(false)
@@ -47,10 +33,11 @@ const App = (isModalOpen) => {
     fetchDataFromAPI();
   };
   return (
-    <div className='w-screen h-screen flex justify-center items-center'>
+    <div className='w-screen h-screen flex justify-center items-center flex-col'>
+        <img src='/image/logo.png' className="w-12"></img>
         <Form
         name="login"
-        className='w-[300px]'
+        className='w-[300px] mt-6'
         onFinish={onFinish}
         >
         <Form.Item

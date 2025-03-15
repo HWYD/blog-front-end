@@ -1,8 +1,9 @@
 import "./globals.css";
-// import { ReduxProvider } from "@/store";
 import { AuthProvider } from '@/store/authContext';
 import { fetchData } from '@/api';
 import { cookies } from 'next/headers'
+import { ConfigProvider } from 'antd';
+import zhCN from 'antd/locale/zh_CN';
 
 export default async function RootLayout({ children }) {
   const cookieStore = cookies()
@@ -22,11 +23,11 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="zh">
       <body>
-            {/* <ReduxProvider> */}
             <AuthProvider initialAuth={initialAuth}>
-              {children}
+              <ConfigProvider locale={zhCN}>
+                {children}
+              </ConfigProvider>
             </AuthProvider>
-         {/* </ReduxProvider> */}
       </body>
     </html>
   );

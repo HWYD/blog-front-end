@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import 'antd/dist/reset.css';
 
 :root {
   --background: #f2f3f5;

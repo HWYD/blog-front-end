@@ -66,11 +66,11 @@ export default function drafts(context){
     }
 
     const inputRef = useRef(null);
-    useEffect(()=>{
-        inputRef.current.focus({
-            cursor: 'start',
-          });
-    },[])
+    // useEffect(()=>{
+    //     inputRef.current.focus({
+    //         cursor: 'start',
+    //       });
+    // },[])
     
     return (
         <div className='flex justify-center mx-auto w-full 2xl:max-w-[1280px] px-3 box-border'>

@@ -4,6 +4,7 @@ import ArticleList from "@/app/component/ArticleList"
 import { fetchData } from '@/api';
 import { useState,useEffect } from 'react';
 import { setLoginStatus } from "@/store/authSlice";
+import './user.css';
 // import { useDispatch } from "react-redux";
 
 export default function User(context) {
@@ -63,7 +64,7 @@ export default function User(context) {
   };
 
     return (
-      <div className="max-w-[1200px] mx-auto mt-4">
+      <div className="max-w-[1200px] mx-auto mt-2">
         <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
       </div>
     )
