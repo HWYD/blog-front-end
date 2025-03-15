@@ -32,8 +32,8 @@ const Collect = ({ data }) => {
     }
 
     return (
-        <div className="px-3 py-1 inline-block" onClick={handleCollect}>
-            { articleItem.is_collected == 1? <StarFilled className='text-blue-600'/>: <StarOutlined className='hover:text-blue-600'/>} { articleItem.collect_num }
+        <div className="mr-3 lg:mr-4 py-1 inline-block hover:text-blue-600" onClick={handleCollect}>
+            { articleItem.is_collected == 1? <StarFilled className='text-blue-600'/>: <StarOutlined />} { articleItem.collect_num }
         </div>
     );
   };

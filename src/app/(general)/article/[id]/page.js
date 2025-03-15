@@ -20,7 +20,7 @@ export default async function article(context) {
 
     return (
       <div className="max-w-[1200px] mx-auto mt-4 mdxeditor-doc">
-        <div className='bg-white p-5 2xl:px-8'>
+        <div className='bg-white p-5 2xl:px-8 rounded-lg'>
           <h1 className='mb-4'>{articleData.title}</h1>
           <div className='flex items-center text-sm mb-4 text-gray-500'>
             <span className='text-gray-800'>{ articleData.author }</span>
