@@ -15,9 +15,35 @@ import { MDXEditor,
      thematicBreakPlugin,
      markdownShortcutPlugin,
      tablePlugin,
+     codeBlockPlugin,
+     defaultCodeBlockLanguage,
+    //  defaultSnippetContent,
+     sandpackPlugin,
+     codeMirrorPlugin,
+     ConditionalContents,
+     InsertCodeBlock,
+     InsertSandpack,
+     ChangeCodeMirrorLanguage,
+     ShowSandpackInfo
      } from "@mdxeditor/editor";
 import '@mdxeditor/editor/style.css'
 import React, { useEffect,useRef } from 'react';
+
+const simpleSandpackConfig = {
+  defaultPreset: 'react',
+  presets: [
+    {
+      label: 'React',
+      name: 'react',
+      meta: 'live react',
+      sandpackTemplate: 'react',
+      sandpackTheme: 'light',
+      snippetFileName: '/App.js',
+      snippetLanguage: 'jsx',
+      // initialSnippetContent: defaultSnippetContent
+    }
+  ]
+}
 
 
 const Editor = ({ markdown, onUpdate }) => {
@@ -43,6 +69,9 @@ const Editor = ({ markdown, onUpdate }) => {
         headingsPlugin(),
         listsPlugin(),
         quotePlugin(),
+        codeBlockPlugin({ defaultCodeBlockLanguage: 'js' }),
+        sandpackPlugin({ sandpackConfig: simpleSandpackConfig }),
+        codeMirrorPlugin({ codeBlockLanguages: { js: 'JavaScript', css: 'CSS' } }),
         thematicBreakPlugin(),
         markdownShortcutPlugin(),
         tablePlugin(),
@@ -55,6 +84,20 @@ const Editor = ({ markdown, onUpdate }) => {
                 <CodeToggle/>
                 <ListsToggle/>
                 <InsertTable/>
+                <ConditionalContents
+                  options={[
+                    { when: (editor) => editor?.editorType === 'codeblock', contents: () => <ChangeCodeMirrorLanguage /> },
+                    { when: (editor) => editor?.editorType === 'sandpack', contents: () => <ShowSandpackInfo /> },
+                    {
+                      fallback: () => (
+                        <>
+                          <InsertCodeBlock />
+                          {/* <InsertSandpack /> */}
+                        </>
+                      )
+                    }
+                  ]}
+                />
                 <BlockTypeSelect/>
                 <DiffSourceToggleWrapper/>
               </>
