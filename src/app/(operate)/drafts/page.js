@@ -1,8 +1,8 @@
 'use client';
-import { Button, Form, Input, message  } from 'antd';
+import { Button, Form, Input, message, Spin  } from 'antd';
 import { fetchData } from '@/api';
 import { useRouter } from 'next/navigation'
-import React, { useState,useEffect } from 'react';
+import React, { useState,useEffect,useRef } from 'react';
 import PublishForm from './PublishForm'
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
@@ -14,25 +14,33 @@ const EditorComp = dynamic(() => import('../../component/Editor'), { ssr: false 
 export default function drafts(context){
     // console.log('context1',context)
     const articleId = context.searchParams.id
+    const [articleData, setArticleData] = useState(null);
     const [content, setContent] = useState('');
     const [form] = Form.useForm();
+    const fetchedRef = useRef(false) 
     const getArticleData = async()=>{
         const params = {
             id: articleId
         };
         const queryParams = new URLSearchParams(params);
-        const articleData = await fetchData(`/article_one?${queryParams.toString()}`,{})
-        setTimeout(()=>{{
-            setContent(articleData.content)
-        }},500)
-        // console.log('articleData.content',articleData.content)
+        const data = await fetchData(`/article_one?${queryParams.toString()}`,{})
+        setArticleData(data)
+        setContent(data.content)
+        // form.resetFields() 
+        form.setFieldsValue({ title: data.title })
+        console.log('articleData.content',data.content)
     }
     useEffect(()=>{
-        if(articleId){
+        // if(articleId){
+        //     getArticleData()
+        //     form.setFieldValue('title','123' );
+        // }
+        if (!fetchedRef.current) {
+            fetchedRef.current = true
             getArticleData()
-            form.setFieldValue('title','123' );
-        }
-    },[])
+            
+          }
+    },[articleId])
     const [messageApi, contextHolder] = message.useMessage();
     const onFinish = () =>{
         // console.log('onFinish-markdown',content)
@@ -64,10 +72,15 @@ export default function drafts(context){
         await fetchDataFromAPI();
     }
 
+    const submit = ()=>{
+        form.submit()
+    }
+    // if (articleId && !articleData) return <Spin className='m-auto'/>
     return (
         <div className="w-screen h-screen bg-white">
-            <div className='flex justify-center mx-auto w-full 2xl:max-w-[1280px] px-3 box-border'>
+            <div className='flex flex-col justify-center mx-auto w-full 2xl:max-w-[1280px] px-3 box-border'>
                 {contextHolder}
+                <div className='flex justify-between items-center'>
                 <Form
                     form={form}
                     name="drafts"
@@ -85,26 +98,21 @@ export default function drafts(context){
                         },
                         ]}
                     >
-                    <div className='flex justify-between items-center'>
                         <Input placeholder="输入文章标题..." variant="borderless"  size="large" className='text-xl font-bold'/>
-                        <div className='flex'>
-                            <Link href="/"><Button>返回</Button></Link>
-                            <Button type="primary" htmlType="submit" className='ml-2'>{articleId? '更新': '发布' }</Button>
-                        </div>
-                    </div>
                 </Form.Item>
-                <Form.Item
-                    name="content"
-                    label=""
-                >
-                    <div className=' w-full min-h-[400px] max-h-[650px] overflow-auto mdxeditor-doc'>
+                </Form>
+                    <div className='flex'>
+                        <Link href="/"><Button>返回</Button></Link>
+                        <Button type="primary" onClick={submit} className='ml-2'>{articleId? '更新': '发布' }</Button>
+                    </div>
+                </div>
+                    <div className=' w-full min-h-[400px] max-h-[calc(100vh-86px)] overflow-auto mdxeditor-doc'>
                         <Suspense fallback={null}>
                             <EditorComp content={content} onUpdate={setContent}/>
                         </Suspense>
                     </div>
-                </Form.Item>
-                </Form>
-                <PublishForm open={open} setOpen={setOpen} onPublish={onPublish} />
+                
+                <PublishForm open={open} setOpen={setOpen} onPublish={onPublish} articleData={articleData}/>
             </div>
         </div>
     )
