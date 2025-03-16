@@ -2,7 +2,7 @@ import { Card,Tag   } from 'antd';
 import { EyeOutlined, StarFilled,StarOutlined } from '@ant-design/icons';
 import Collect from '@/app/component/Collect'
 import Link from 'next/link'
-import { Empty } from 'antd';
+import ClientEmpty from './ClientEmpty';
 
 
 const ArticleList = ({ articleData }) => {
@@ -31,7 +31,7 @@ const ArticleList = ({ articleData }) => {
 
     return (
         <div>
-          { articleData.length? articleListDom : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} className='mt-20'/> }
+          { articleData.length? articleListDom : <ClientEmpty/> }
         </div>
     );
   };

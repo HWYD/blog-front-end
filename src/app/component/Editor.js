@@ -27,7 +27,7 @@ import { MDXEditor,
      ShowSandpackInfo
      } from "@mdxeditor/editor";
 import '@mdxeditor/editor/style.css'
-import React, { useEffect,useRef } from 'react';
+import React, { useState, useEffect,useRef,useCallback } from 'react';
 
 const simpleSandpackConfig = {
   defaultPreset: 'react',
@@ -46,32 +46,67 @@ const simpleSandpackConfig = {
 }
 
 
-const Editor = ({ markdown, onUpdate }) => {
+const Editor = ({ content, onUpdate }) => {
+  // console.log('content123',content)
   const editorRef = useRef(null)
-  useEffect(() => {
-    // 延迟确保编辑器完成初始化
-    const timer = setTimeout(() => {
+  const [isReady, setIsReady] = useState(false)
+  const initialContent = useRef(content) // 保持初始内容不变
+  // 安全设置内容
+  const safeSetContent = useCallback(() => {
+    if (editorRef.current && isReady) {
+      // console.log('设置了')
+      editorRef.current.setMarkdown(initialContent.current)
+    }
+  }, [isReady])
+   // 监听编辑器就绪状态
+   useEffect(() => {
+    const timer = setInterval(() => {
       if (editorRef.current) {
-        editorRef.current.focus() // 手动聚焦
+        setIsReady(true)
+        editorRef.current.focus()
+        clearInterval(timer)
       }
     }, 100)
     
-    return () => clearTimeout(timer)
+    return () => clearInterval(timer)
   }, [])
+ // 处理外部内容更新
+ useEffect(() => {
+  if (isReady && content !== initialContent.current) {
+    editorRef.current?.setMarkdown(content)
+    initialContent.current = content
+  }
+}, [content, isReady])
+  
+  // 初始赋值
+  useEffect(() => {
+    safeSetContent()
+  }, [safeSetContent])
+
+  // useEffect(() => {
+  //   // 延迟确保编辑器完成初始化
+  //   const timer = setTimeout(() => {
+  //     if (editorRef.current) {
+  //       editorRef.current.focus() // 手动聚焦
+  //     }
+  //   }, 100)
+    
+  //   return () => clearTimeout(timer)
+  // }, [])
   return (
     <MDXEditor
       onChange={(e) => onUpdate(e)}
       ref={editorRef}
       autoFocus
       scrollable={true}
-      markdown={markdown}
+      markdown=""
       plugins={[
         headingsPlugin(),
         listsPlugin(),
         quotePlugin(),
         codeBlockPlugin({ defaultCodeBlockLanguage: 'js' }),
         sandpackPlugin({ sandpackConfig: simpleSandpackConfig }),
-        codeMirrorPlugin({ codeBlockLanguages: { js: 'JavaScript', css: 'CSS' } }),
+        codeMirrorPlugin({ codeBlockLanguages: { js: 'JavaScript', css: 'CSS',jsx: 'JavaScript (react)' } }),
         thematicBreakPlugin(),
         markdownShortcutPlugin(),
         tablePlugin(),

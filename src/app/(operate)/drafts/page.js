@@ -12,9 +12,9 @@ const EditorComp = dynamic(() => import('../../component/Editor'), { ssr: false 
 
 
 export default function drafts(context){
-    console.log('context1',context)
+    // console.log('context1',context)
     const articleId = context.searchParams.id
-    const [markdown, setMarkdown] = useState('');
+    const [content, setContent] = useState('');
     const [form] = Form.useForm();
     const getArticleData = async()=>{
         const params = {
@@ -23,9 +23,9 @@ export default function drafts(context){
         const queryParams = new URLSearchParams(params);
         const articleData = await fetchData(`/article_one?${queryParams.toString()}`,{})
         setTimeout(()=>{{
-            setMarkdown(articleData.content)
+            setContent(articleData.content)
         }},500)
-        console.log('articleData.content',articleData.content)
+        // console.log('articleData.content',articleData.content)
     }
     useEffect(()=>{
         if(articleId){
@@ -35,8 +35,8 @@ export default function drafts(context){
     },[])
     const [messageApi, contextHolder] = message.useMessage();
     const onFinish = () =>{
-        console.log('onFinish-markdown',markdown)
-        if(!markdown){
+        // console.log('onFinish-markdown',content)
+        if(!content){
             messageApi.info('文章内容不能为空!');
             return
         }
@@ -46,13 +46,13 @@ export default function drafts(context){
     const onPublish = async(options)=>{
         const fetchDataFromAPI = async () => {
             try {
-                console.log('markdown',markdown)
+                // console.log('markcontentdown',content)
                 const data = await fetchData('/article',{
                     method: 'POST',
                     body: {
                         ...form.getFieldValue(),
                         ...options,
-                        content: markdown
+                        content
                     }
                 });
                 messageApi.success('发布成功！');
@@ -99,7 +99,7 @@ export default function drafts(context){
                 >
                     <div className=' w-full min-h-[400px] max-h-[650px] overflow-auto mdxeditor-doc'>
                         <Suspense fallback={null}>
-                            <EditorComp markdown={markdown} onUpdate={setMarkdown}/>
+                            <EditorComp content={content} onUpdate={setContent}/>
                         </Suspense>
                     </div>
                 </Form.Item>
