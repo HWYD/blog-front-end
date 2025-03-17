@@ -7,7 +7,7 @@ export default function RootLayout({ children }) {
     //   <body>
         <>
             <Header></Header>
-            <div className="min-h-96">
+            <div className="min-h-96 pb-3">
               {children}
             </div>
         </>

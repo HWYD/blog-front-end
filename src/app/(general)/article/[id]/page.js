@@ -34,7 +34,7 @@ export default async function article(context) {
               <ReactMarkdown>
                   {articleData.content}
               </ReactMarkdown>
-              <div className='mt-5'>
+              <div className='mt-10'>
                 <span className='mr-3 text-sm'>标签：</span>{ articleData.Tags.map(tagItem => (
                     <Tag key={tagItem.id}>{tagItem.name}</Tag>
                   )) }
