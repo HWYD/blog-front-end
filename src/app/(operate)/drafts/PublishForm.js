@@ -15,14 +15,15 @@ export default function PublishForm ({open,setOpen,onPublish,articleData }){
       if(articleData){
         initialArticleData.current = articleData
         console.log('get',initialArticleData.current)
-        form.setFieldValue('description','123')
-        // form.setFieldValue('tags',[])
-        // {
+        form.setFieldValue('description',initialArticleData.current.description)
+        form.setFieldValue('tags',initialArticleData.current.tags.map(item=>item.id))
+        // form.setFieldsValue({
         //   cover: [],
-        //   description: articleData.description,
-        //   tags: []
-        // }
-        setImageUrl(articleData.cover)
+        //   description: initialArticleData.description,
+        //   tags: initialArticleData.tags
+        // })
+        
+        setImageUrl(initialArticleData.current.cover)
       }
     },[articleData])
     const handleOk = async() => {

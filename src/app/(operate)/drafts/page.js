@@ -13,7 +13,7 @@ const EditorComp = dynamic(() => import('../../component/Editor'), { ssr: false 
 
 export default function drafts(context){
     // console.log('context1',context)
-    const articleId = context.searchParams.id
+    const articleId = context.searchParams.id || ''
     const [articleData, setArticleData] = useState(null);
     const [content, setContent] = useState('');
     const [form] = Form.useForm();
@@ -58,6 +58,7 @@ export default function drafts(context){
                 const data = await fetchData('/article',{
                     method: 'POST',
                     body: {
+                        id: articleId,
                         ...form.getFieldValue(),
                         ...options,
                         content

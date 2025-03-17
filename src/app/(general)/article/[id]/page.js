@@ -1,5 +1,6 @@
 import { fetchData } from '@/api';
 import ReactMarkdown from'react-markdown';
+import { Tag } from 'antd';
 import { cookies } from 'next/headers'
 import { EyeOutlined } from '@ant-design/icons';
 import { convertDate } from '@/utils'
@@ -33,6 +34,11 @@ export default async function article(context) {
               <ReactMarkdown>
                   {articleData.content}
               </ReactMarkdown>
+              <div className='mt-5'>
+                <span className='mr-3 text-sm'>标签：</span>{ articleData.Tags.map(tagItem => (
+                    <Tag key={tagItem.id}>{tagItem.name}</Tag>
+                  )) }
+              </div>
           </div>
         </div>
       </div>
