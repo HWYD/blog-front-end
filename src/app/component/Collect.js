@@ -10,7 +10,6 @@ const Collect = ({ data }) => {
     const handleCollect = async(e)=>{
         e.stopPropagation();
         e.preventDefault();
-        console.log('collect',data,e)
         try {
             const status = articleItem.is_collected == 1? 0 :1
             const ret = await fetchData('/collection',{
@@ -25,7 +24,6 @@ const Collect = ({ data }) => {
                 is_collected: status,
                 collect_num: status? articleItem.collect_num + 1 : articleItem.collect_num - 1
             })
-            console.log('操作成功',data)
         } catch (error) {
             console.error('Failed to fetch data:', error);
         }

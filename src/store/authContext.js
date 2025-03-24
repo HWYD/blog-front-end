@@ -14,7 +14,6 @@ export function AuthProvider({ children, initialAuth }) {
   });
 
   const login = (userData) => {
-    console.log('userData',userData)
     setAuthState({
       loginStatus: true,
     });

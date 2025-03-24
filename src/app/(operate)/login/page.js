@@ -12,7 +12,6 @@ const App = (isModalOpen) => {
     const { login } = useAuth();
     const onFinish = (values) => {
     const fetchDataFromAPI = async () => {
-        console.log(process.env.NEXT_PUBLIC_API_URL)
         try {
             const { token } = await fetchData('/login',{
                 method: 'POST',

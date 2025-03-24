@@ -23,7 +23,6 @@ export default function User(context) {
     } catch (error) {
       console.log('error',error)
       if(error.message == 403){
-        console.log('llo胡hi哦')
         // dispatch(setLoginStatus(false))
       }
     }
@@ -52,7 +51,6 @@ export default function User(context) {
     }
   ];
   const onChange = (key) => {
-    console.log(key)
     switch(key){
       case '1':
         fetchMyArticles()

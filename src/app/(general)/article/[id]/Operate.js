@@ -8,7 +8,6 @@ import { useRouter } from 'next/navigation'
 const Operate = ({articleId}) => {
     const router = useRouter()
     const confirm = async() => {
-      console.log('articleId',articleId);
         const params = {
             id: articleId
         };

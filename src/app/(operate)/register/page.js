@@ -9,7 +9,6 @@ export default function Register() {
   const router = useRouter()
   const [messageApi, contextHolder] = message.useMessage();
   const onFinish = (values) => {
-    console.log(values,'values')
     const fetchDataFromAPI = async () => {
         try {
             await fetchData('/register',{

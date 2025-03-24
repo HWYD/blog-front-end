@@ -59,7 +59,6 @@ export const authSlice = createSlice({
     setLoginStatus: (state, action) => {
       const { payload } = action
       state.isLogin = payload
-      console.log(action,12,state.isLogin)
     },
   },
 });

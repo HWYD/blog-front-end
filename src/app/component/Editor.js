@@ -47,14 +47,12 @@ const simpleSandpackConfig = {
 
 
 const Editor = ({ content, onUpdate }) => {
-  // console.log('content123',content)
   const editorRef = useRef(null)
   const [isReady, setIsReady] = useState(false)
   const initialContent = useRef(content) // 保持初始内容不变
   // 安全设置内容
   const safeSetContent = useCallback(() => {
     if (editorRef.current && isReady) {
-      // console.log('设置了')
       editorRef.current.setMarkdown(initialContent.current)
     }
   }, [isReady])
@@ -95,7 +93,7 @@ const Editor = ({ content, onUpdate }) => {
         listsPlugin(),
         quotePlugin(),
         codeBlockPlugin({ defaultCodeBlockLanguage: 'js' }),
-        sandpackPlugin({ sandpackConfig: simpleSandpackConfig }),
+        // sandpackPlugin({ sandpackConfig: simpleSandpackConfig }),
         codeMirrorPlugin({ codeBlockLanguages: { js: 'JavaScript', css: 'CSS',jsx: 'JavaScript (react)' } }),
         thematicBreakPlugin(),
         markdownShortcutPlugin(),
@@ -111,8 +109,8 @@ const Editor = ({ content, onUpdate }) => {
                 <InsertTable/>
                 <ConditionalContents
                   options={[
-                    { when: (editor) => editor?.editorType === 'codeblock', contents: () => <ChangeCodeMirrorLanguage /> },
-                    { when: (editor) => editor?.editorType === 'sandpack', contents: () => <ShowSandpackInfo /> },
+                    // { when: (editor) => editor?.editorType === 'codeblock', contents: () => <ChangeCodeMirrorLanguage /> },
+                    // { when: (editor) => editor?.editorType === 'sandpack', contents: () => <ShowSandpackInfo /> },
                     {
                       fallback: () => (
                         <>
@@ -123,7 +121,7 @@ const Editor = ({ content, onUpdate }) => {
                     }
                   ]}
                 />
-                <BlockTypeSelect/>
+                {/* <BlockTypeSelect/> */}
                 <DiffSourceToggleWrapper/>
               </>
             )

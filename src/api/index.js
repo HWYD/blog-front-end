@@ -2,9 +2,9 @@
 import Cookies from "js-cookie"
 export async function fetchData(url, options = {}) {
     if (process.env.NODE_ENV === 'development') {
-        console.log('当前处于开发环境',process.env.NEXT_PUBLIC_API_URL);
+        // console.log('当前处于开发环境',process.env.NEXT_PUBLIC_API_URL);
       } else if (process.env.NODE_ENV === 'production') {
-        console.log('当前处于生产环境',process.env.NEXT_PUBLIC_API_URL);
+        // console.log('当前处于生产环境',process.env.NEXT_PUBLIC_API_URL);
       }
     const defaultOptions = {
         method: 'GET',

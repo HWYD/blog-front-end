@@ -28,7 +28,6 @@ export default function drafts(context){
         setContent(data.content)
         // form.resetFields() 
         form.setFieldsValue({ title: data.title })
-        console.log('articleData.content',data.content)
     }
     useEffect(()=>{
         if (!fetchedRef.current && articleId) {
@@ -54,7 +53,6 @@ export default function drafts(context){
                 const data = await fetchData('/article',{
                     method: 'POST',
                     body: {
-                        id: articleId,
                         ...form.getFieldValue(),
                         ...options,
                         content

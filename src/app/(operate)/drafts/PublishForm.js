@@ -14,15 +14,8 @@ export default function PublishForm ({open,setOpen,onPublish,articleData }){
     useEffect(()=>{
       if(articleData){
         initialArticleData.current = articleData
-        console.log('get',initialArticleData.current)
         form.setFieldValue('description',initialArticleData.current.description)
         form.setFieldValue('tags',initialArticleData.current.tags.map(item=>item.id))
-        // form.setFieldsValue({
-        //   cover: [],
-        //   description: initialArticleData.description,
-        //   tags: initialArticleData.tags
-        // })
-        
         setImageUrl(initialArticleData.current.cover)
       }
     },[articleData])
@@ -32,13 +25,18 @@ export default function PublishForm ({open,setOpen,onPublish,articleData }){
             ...form.getFieldValue(),
             cover: imageUrl
         }
-        console.log('options',options,form.getFieldValue())
-        await onPublish(options)
-        setOpen(false);
-        setConfirmLoading(false);
+        if(articleData && articleData.id){
+          options.id = articleData.id
+        }
+        try {
+          await onPublish(options)
+          setOpen(false);
+          setConfirmLoading(false);
+        } catch (error) {
+          setConfirmLoading(false);
+        }
       };
       const handleCancel = () => {
-        console.log('Clicked cancel button');
         setOpen(false);
       };
 
@@ -63,7 +61,6 @@ export default function PublishForm ({open,setOpen,onPublish,articleData }){
       const [tagData,setTagData] = useState([])
       useEffect(()=>{
         fetchData(`/tag`,{}).then((ret)=>{
-            console.log('ttt',ret,process.env.NEXT_PUBLIC_API_URL)
             const formatD = ret.map(item =>({
                 label: item.name,
                 value: item.id
