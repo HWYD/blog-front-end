@@ -42,11 +42,16 @@ const App = (isModalOpen) => {
         >
         <Form.Item
             name="phone"
+            validateTrigger="onBlur"
             rules={[
-            {
-                required: true,
-                message: '请输入手机号!',
-            },
+                {
+                    required: true,
+                    message: '请输入手机号!',
+                },
+                {
+                    pattern: /^[1][23456789][0-9]{9}$/,
+                    message: '请输入正确的手机号'
+                }
             ]}
         >
             <Input prefix={<UserOutlined />} placeholder="phone" />
@@ -54,10 +59,10 @@ const App = (isModalOpen) => {
         <Form.Item
             name="password"
             rules={[
-            {
-                required: true,
-                message: '请输入密码!',
-            },
+                {
+                    required: true,
+                    message: '请输入密码!',
+                }
             ]}
         >
             <Input prefix={<LockOutlined />} type="password" placeholder="Password" />

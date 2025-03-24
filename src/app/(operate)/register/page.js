@@ -55,11 +55,16 @@ export default function Register() {
         <Form.Item
             name="phone"
             label="手机号"
+            validateTrigger="onBlur"
             rules={[
-            {
-                required: true,
-                message: '请输入手机号!',
-            },
+                {
+                    required: true,
+                    message: '请输入手机号!',
+                },
+                {
+                    pattern: /^[1][23456789][0-9]{9}$/,
+                    message: '请输入正确的手机号'
+                }
             ]}
         >
             <Input prefix={<PhoneOutlined />} placeholder="phone" />
