@@ -10,7 +10,9 @@ export default function UserProfile(){
     const { loginStatus,logout } = useAuth();
     const toLogout = ()=>{
         logout()
-        // router.push('/login')
+    }
+    const goDrafts = ()=>{
+      router.push(loginStatus?'/drafts': '/login')
     }
     const items = [
         {
@@ -32,6 +34,7 @@ export default function UserProfile(){
     ]
     return (
         <>
+            <Button type="primary" className='mr-3' onClick={goDrafts}>创作</Button>
             {
             loginStatus? <Dropdown menu={{ items }} placement="bottomRight" className='cursor-pointer'>
                 <a onClick={(e) => e.preventDefault()}>

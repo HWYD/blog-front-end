@@ -31,11 +31,7 @@ export default function drafts(context){
         console.log('articleData.content',data.content)
     }
     useEffect(()=>{
-        // if(articleId){
-        //     getArticleData()
-        //     form.setFieldValue('title','123' );
-        // }
-        if (!fetchedRef.current) {
+        if (!fetchedRef.current && articleId) {
             fetchedRef.current = true
             getArticleData()
             

@@ -83,16 +83,6 @@ const Editor = ({ content, onUpdate }) => {
     safeSetContent()
   }, [safeSetContent])
 
-  // useEffect(() => {
-  //   // 延迟确保编辑器完成初始化
-  //   const timer = setTimeout(() => {
-  //     if (editorRef.current) {
-  //       editorRef.current.focus() // 手动聚焦
-  //     }
-  //   }, 100)
-    
-  //   return () => clearTimeout(timer)
-  // }, [])
   return (
     <MDXEditor
       onChange={(e) => onUpdate(e)}
