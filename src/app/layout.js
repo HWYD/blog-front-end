@@ -4,7 +4,6 @@ import { fetchData } from '@/api';
 import { cookies } from 'next/headers'
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/locale/zh_CN';
-import CustomScript from './CustomScript'
 
 export default async function RootLayout({ children }) {
   const cookieStore = cookies()
@@ -29,7 +28,6 @@ export default async function RootLayout({ children }) {
                 {children}
               </ConfigProvider>
             </AuthProvider>
-            <CustomScript/>
       </body>
     </html>
   );
