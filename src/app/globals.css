@@ -96,5 +96,8 @@ body {
   }
 }
 
-@import '../../node_modules/@mdxeditor/editor/dist/style.css';
+/* @import '../../node_modules/@mdxeditor/editor/dist/style.css'; */
+
+@import './prism.css';
+
 

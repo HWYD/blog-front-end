@@ -6,6 +6,7 @@ import { EyeOutlined } from '@ant-design/icons';
 import { convertDate } from '@/utils'
 import Link from 'next/link'
 import Operate from './Operate'
+import CodeHighlighter from './CodeHighlighter';
 
 export default async function article(context) {
     const cookieStore = cookies()
@@ -47,6 +48,7 @@ export default async function article(context) {
               }
           </div>
         </div>
+        <CodeHighlighter/>
       </div>
     )
   }
