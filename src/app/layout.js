@@ -1,4 +1,4 @@
-import "./globals.css";
+import "@/app/styles/globals.css";
 import { AuthProvider } from '@/store/authContext';
 import { fetchData } from '@/api';
 import { cookies } from 'next/headers'

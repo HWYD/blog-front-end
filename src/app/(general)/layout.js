@@ -1,4 +1,4 @@
-import "@/app/globals.css";
+import "@/app/styles/globals.css";
 import Header from '@/app/component/Header'
 
 export default function RootLayout({ children }) {
