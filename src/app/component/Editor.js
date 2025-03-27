@@ -22,6 +22,8 @@ import { MDXEditor,
      codeMirrorPlugin,
      ConditionalContents,
      InsertCodeBlock,
+     imagePlugin,
+     InsertImage,
      InsertSandpack,
      ChangeCodeMirrorLanguage,
      ShowSandpackInfo
@@ -81,6 +83,19 @@ const Editor = ({ content, onUpdate }) => {
     safeSetContent()
   }, [safeSetContent])
 
+  async function imageUploadHandler(image) {
+    const formData = new FormData()
+    formData.append('image', image)
+    // send the file to your server and return
+    // the URL of the uploaded image in the response
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/upload`, {
+      method: 'POST',
+      body: formData
+    })
+    const json = (await response.json())
+    return process.env.NEXT_PUBLIC_API_URL + json.url
+  }
+
   return (
     <MDXEditor
       onChange={(e) => onUpdate(e)}
@@ -98,6 +113,10 @@ const Editor = ({ content, onUpdate }) => {
         thematicBreakPlugin(),
         markdownShortcutPlugin(),
         tablePlugin(),
+        imagePlugin({
+          imageUploadHandler,
+          // imageAutocompleteSuggestions: ['https://picsum.photos/200/300', 'https://picsum.photos/200']
+        }),
         toolbarPlugin({
             toolbarContents: () => (
               <>
@@ -106,6 +125,7 @@ const Editor = ({ content, onUpdate }) => {
                 <BoldItalicUnderlineToggles />
                 <CodeToggle/>
                 <ListsToggle/>
+                <InsertImage />
                 <InsertTable/>
                 <ConditionalContents
                   options={[
