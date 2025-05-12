@@ -17,7 +17,10 @@ const ArticleList = ({ articleData }) => {
             <div className="mt-2 text-[13px] lg:text-sm text-zinc-600 line-clamp-3">{item.description}</div>
             <div className="absolute bottom-[-35px] lg:relative lg:bottom-0 flex items-center w-full mt-2 text-xs whitespace-nowrap">
               <div className="mr-3 lg:mr-4 lg:pr-4 lg:border-r border-zinc-300">{item.author}</div>
-              <span className="mr-3 lg:mr-4"><EyeOutlined /> {formatCount(item.view_num)} </span>
+              <div className="flex items-center mr-3 lg:mr-4">
+                <EyeOutlined />
+                <span className="ml-1">{formatCount(item.view_num)} </span>
+              </div>
               <Collect data={item} />
               {item.Tags.map(tagItem => (
                 <Tag key={tagItem.id}>{tagItem.name}</Tag>

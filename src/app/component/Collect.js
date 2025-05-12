@@ -30,8 +30,9 @@ const Collect = ({ data }) => {
     }
 
     return (
-        <div className="mr-3 lg:mr-4 py-1 inline-block hover:text-blue-600" onClick={handleCollect}>
-            { articleItem.is_collected == 1? <StarFilled className='text-blue-600'/>: <StarOutlined />} { articleItem.collect_num }
+        <div className="flex items-center mr-3 lg:mr-4 py-1 hover:text-blue-600" onClick={handleCollect}>
+            { articleItem.is_collected == 1? <StarFilled className='text-blue-600'/>: <StarOutlined />} 
+            <span className='ml-1'>{ articleItem.collect_num }</span>
         </div>
     );
   };
