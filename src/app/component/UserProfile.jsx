@@ -33,7 +33,7 @@ export default function UserProfile(){
         }
     ]
     return (
-        <>
+        <div className='flex items-center'>
             <Button type="primary" className='mr-3' onClick={goDrafts}>创作</Button>
             {
             loginStatus? <Dropdown menu={{ items }} placement="bottomRight" className='cursor-pointer'>
@@ -43,6 +43,6 @@ export default function UserProfile(){
             </Dropdown>: 
             <Link href="/login"  className='mr-3'><Button>登录</Button></Link>
             }
-        </>
+        </div>
     )
 }
