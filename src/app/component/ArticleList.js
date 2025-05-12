@@ -23,7 +23,11 @@ const ArticleList = ({ articleData }) => {
               </div>
               <Collect data={item} />
               {item.Tags.map(tagItem => (
-                <Tag key={tagItem.id}>{tagItem.name}</Tag>
+                <span key={tagItem.id}
+                  className='inline-block text-xs mr-2 text-nowrap border border-[#d9d9d9] rounded-md leading-[20px] px-[7px] bg-neutral-50'
+                >
+                  {tagItem.name}</span>
+                // <Tag key={tagItem.id}>{tagItem.name}</Tag>
               ))}
             </div>
           </div>
