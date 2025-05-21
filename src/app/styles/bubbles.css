@@ -1,0 +1,186 @@
+.bubbles-container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: linear-gradient(120deg, #e0f7fa 0%, #f3e5f5 100%);
+    overflow: hidden;
+    z-index: 0;
+}
+
+.login-container {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+.login-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.bubble {
+    position: absolute;
+    border-radius: 50%;
+    animation: float 20s infinite ease-in-out;
+    filter: blur(0.2px);
+    box-shadow: 
+        inset 0 0 20px rgba(255, 255, 255, 0.5),
+        0 0 15px rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(0.5px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    opacity: 0.9;
+    bottom: -100px;
+}
+
+.bubble::before {
+    content: '';
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    width: 30%;
+    height: 30%;
+    background: radial-gradient(circle at center,
+        rgba(255, 255, 255, 0.8) 0%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0) 100%);
+    border-radius: 50%;
+    filter: blur(0.5px);
+    transform: translateZ(1px);
+}
+
+.bubble::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 30%,
+        rgba(255, 255, 255, 0.3) 0%,
+        rgba(255, 255, 255, 0.1) 30%,
+        rgba(255, 255, 255, 0) 70%);
+    border-radius: 50%;
+    filter: blur(1px);
+    transform: translateZ(-1px);
+}
+
+/* 阳光色系气泡 */
+.bubble:nth-child(1) {
+    width: 120px;
+    height: 120px;
+    left: 10%;
+    bottom: -120px;
+    background: linear-gradient(135deg, 
+        rgba(255, 245, 245, 0.5) 0%,
+        rgba(255, 227, 227, 0.3) 50%,
+        rgba(255, 245, 245, 0.2) 100%);
+    animation-duration: 15s;
+    animation-delay: 0s;
+    transform: rotateX(10deg) rotateY(10deg);
+}
+
+.bubble:nth-child(2) {
+    width: 80px;
+    height: 80px;
+    left: 30%;
+    bottom: -80px;
+    background: linear-gradient(135deg, 
+        rgba(255, 249, 219, 0.5) 0%,
+        rgba(255, 236, 153, 0.3) 50%,
+        rgba(255, 249, 219, 0.2) 100%);
+    animation-duration: 18s;
+    animation-delay: 2s;
+    transform: rotateX(-15deg) rotateY(5deg);
+}
+
+.bubble:nth-child(3) {
+    width: 100px;
+    height: 100px;
+    left: 50%;
+    bottom: -100px;
+    background: linear-gradient(135deg, 
+        rgba(227, 250, 252, 0.5) 0%,
+        rgba(197, 246, 250, 0.3) 50%,
+        rgba(227, 250, 252, 0.2) 100%);
+    animation-duration: 20s;
+    animation-delay: 1s;
+    transform: rotateX(5deg) rotateY(-10deg);
+}
+
+.bubble:nth-child(4) {
+    width: 90px;
+    height: 90px;
+    left: 70%;
+    bottom: -90px;
+    background: linear-gradient(135deg, 
+        rgba(243, 240, 255, 0.5) 0%,
+        rgba(229, 219, 255, 0.3) 50%,
+        rgba(243, 240, 255, 0.2) 100%);
+    animation-duration: 17s;
+    animation-delay: 3s;
+    transform: rotateX(-5deg) rotateY(15deg);
+}
+
+.bubble:nth-child(5) {
+    width: 110px;
+    height: 110px;
+    left: 85%;
+    bottom: -110px;
+    background: linear-gradient(135deg, 
+        rgba(255, 245, 245, 0.5) 0%,
+        rgba(255, 227, 227, 0.3) 50%,
+        rgba(255, 245, 245, 0.2) 100%);
+    animation-duration: 19s;
+    animation-delay: 1.5s;
+    transform: rotateX(15deg) rotateY(-5deg);
+}
+
+.bubble:nth-child(6) {
+    width: 70px;
+    height: 70px;
+    left: 20%;
+    bottom: -70px;
+    background: linear-gradient(135deg, 
+        rgba(255, 249, 219, 0.5) 0%,
+        rgba(255, 236, 153, 0.3) 50%,
+        rgba(255, 249, 219, 0.2) 100%);
+    animation-duration: 16s;
+    animation-delay: 2.5s;
+    transform: rotateX(-10deg) rotateY(10deg);
+}
+
+.bubble:nth-child(7) {
+    width: 95px;
+    height: 95px;
+    left: 60%;
+    bottom: -95px;
+    background: linear-gradient(135deg, 
+        rgba(227, 250, 252, 0.5) 0%,
+        rgba(197, 246, 250, 0.3) 50%,
+        rgba(227, 250, 252, 0.2) 100%);
+    animation-duration: 21s;
+    animation-delay: 0.5s;
+    transform: rotateX(5deg) rotateY(-15deg);
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+    5% {
+        opacity: 0.9;
+    }
+    100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0.9;
+    }
+} 
