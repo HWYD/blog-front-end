@@ -16,7 +16,7 @@ export default antfu(
       semi: false
     },
     // 忽略文件
-    ignores: ['eslint.config.mjs']
+    ignores: ['eslint.config.mjs','public/**']
   },
   {
     // 对所有文件都生效的规则

@@ -21,23 +21,11 @@
 // // 导出 reducer
 // export default authSlice.reducer;
 
+// authSlice.jsx
 
+'use client' // this is a client side component
 
-
-
-
-
-
-
-
-
-
-
-//authSlice.jsx
-
-"use client"; //this is a client side component
-
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit'
 // import { RootState } from "../store";
 
 // const initialState = {
@@ -45,9 +33,9 @@ import { createSlice } from "@reduxjs/toolkit";
 // };
 
 export const authSlice = createSlice({
-  name: "auther",
-  initialState:{
-    isLogin: false,
+  name: 'auther',
+  initialState: {
+    isLogin: false
   },
   reducers: {
     // increment: (state) => {
@@ -59,14 +47,12 @@ export const authSlice = createSlice({
     setLoginStatus: (state, action) => {
       const { payload } = action
       state.isLogin = payload
-    },
-  },
-});
+    }
+  }
+})
 
-export const { setLoginStatus } = authSlice.actions;
+export const { setLoginStatus } = authSlice.actions
 
+export const selectAuth = state => state.auther.isLogin
 
-export const selectAuth = state => state.auther.isLogin;
-
-export default authSlice.reducer;
-
+export default authSlice.reducer

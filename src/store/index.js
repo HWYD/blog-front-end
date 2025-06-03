@@ -6,24 +6,24 @@
 //   })
 // }
 
-//store.jsx
+// store.jsx
 
-"use client";
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import authReducer from "./authSlice";
-import { Provider } from "react-redux";
+'use client'
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
+import { Provider } from 'react-redux'
+import authReducer from './authSlice'
 
 const rootReducer = combineReducers({
-  auther: authReducer,
-  //add all your reducers here
-});
+  auther: authReducer
+  // add all your reducers here
+})
 
 export const store = configureStore({
-  reducer: rootReducer,
-});
+  reducer: rootReducer
+})
 
 export function ReduxProvider({ children }) {
-  return <Provider store={store}>{children}</Provider>;
+  return <Provider store={store}>{children}</Provider>
 }
 
 // export type RootState = ReturnType<typeof store.getState>;

@@ -25,7 +25,7 @@ body {
   .text-balance {
     text-wrap: balance;
   }
-  .mdxeditor-doc{
+  .mdxeditor-doc {
     h1 {
       font-size: 2em;
       font-weight: bold;
@@ -99,5 +99,3 @@ body {
 /* @import '../../node_modules/@mdxeditor/editor/dist/style.css'; */
 
 @import './prism.css';
-
-

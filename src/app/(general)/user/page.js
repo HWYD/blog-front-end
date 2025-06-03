@@ -1,10 +1,9 @@
-"use client";
-import { Tabs } from 'antd';
-import ArticleList from "@/app/component/ArticleList"
-import { fetchData } from '@/api';
-import { useState,useEffect } from 'react';
-import { setLoginStatus } from "@/store/authSlice";
-import './user.css';
+'use client'
+import { Tabs } from 'antd'
+import { useEffect, useState } from 'react'
+import { fetchData } from '@/api'
+import ArticleList from '@/app/component/ArticleList'
+import './user.css'
 // import { useDispatch } from "react-redux";
 
 export default function User(context) {
@@ -13,58 +12,57 @@ export default function User(context) {
     page: 1,
     pagesize: 1000
   }
-  const searchParams = new URLSearchParams(pageConfig);
+  const searchParams = new URLSearchParams(pageConfig)
 
-  const [articleData,setArticleData] =  useState([])
-  const fetchMyArticles = async()=>{
+  const [articleData, setArticleData] = useState([])
+  const fetchMyArticles = async () => {
     try {
-      const { rows } = await fetchData(`/self_article?${searchParams.toString()}`,{})
+      const { rows } = await fetchData(`/self_article?${searchParams.toString()}`, {})
       setArticleData(rows)
     } catch (error) {
-      console.log('error',error)
-      if(error.message == 403){
+      console.log('error', error)
+      if (error.message == 403) {
         // dispatch(setLoginStatus(false))
       }
     }
   }
 
-  const [collectArticles,setCollectArticles] =  useState([])
+  const [collectArticles, setCollectArticles] = useState([])
 
-  const fetchCollectArticles = async()=>{
-    const { rows } = await fetchData(`/collect_article?${searchParams.toString()}`,{})
+  const fetchCollectArticles = async () => {
+    const { rows } = await fetchData(`/collect_article?${searchParams.toString()}`, {})
     setCollectArticles(rows)
   }
-  useEffect(()=>{
+  useEffect(() => {
     fetchMyArticles()
-  },[])
+  }, [])
 
   const items = [
     {
       key: '1',
       label: '文章',
-      children: <ArticleList articleData={articleData} />,
+      children: <ArticleList articleData={articleData} />
     },
     {
       key: '2',
       label: '收藏集',
-      children: <ArticleList articleData={collectArticles} />,
+      children: <ArticleList articleData={collectArticles} />
     }
-  ];
+  ]
   const onChange = (key) => {
-    switch(key){
+    switch (key) {
       case '1':
         fetchMyArticles()
-      break;
+        break
       case '2':
         fetchCollectArticles()
-      break;
+        break
     }
-  };
-
-    return (
-      <div className="max-w-[1200px] mx-auto mt-2">
-        <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
-      </div>
-    )
   }
-  
+
+  return (
+    <div className="max-w-[1200px] mx-auto mt-2">
+      <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
+    </div>
+  )
+}
