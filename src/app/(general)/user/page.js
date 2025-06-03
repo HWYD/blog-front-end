@@ -6,7 +6,7 @@ import ArticleList from '@/app/component/ArticleList'
 import './user.css'
 // import { useDispatch } from "react-redux";
 
-export default function User(context) {
+export default function User() {
   // const dispatch = useDispatch();
   const pageConfig = {
     page: 1,
@@ -21,7 +21,7 @@ export default function User(context) {
       setArticleData(rows)
     } catch (error) {
       console.log('error', error)
-      if (error.message == 403) {
+      if (error.message === 403) {
         // dispatch(setLoginStatus(false))
       }
     }
