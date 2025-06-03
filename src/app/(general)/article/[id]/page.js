@@ -5,7 +5,7 @@ import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
 import { fetchData } from '@/api'
 import { convertDate } from '@/utils'
-// import CustomScript from './CustomScript'
+import CustomScript from './CustomScript'
 import Operate from './Operate'
 
 export default async function article(context) {
@@ -56,7 +56,7 @@ export default async function article(context) {
           }
         </div>
       </div>
-      {/* <CustomScript /> */}
+      <CustomScript />
     </div>
   )
 }
