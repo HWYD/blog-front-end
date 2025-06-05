@@ -18,8 +18,8 @@
     "strict": false,
     "noEmit": true,
     "esModuleInterop": true,
-    "skipLibCheck": true,
     "isolatedModules": true,
+    "skipLibCheck": true,
     "plugins": [
       {
         "name": "next"

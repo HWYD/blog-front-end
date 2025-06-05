@@ -1,11 +1,3 @@
-// This function can be marked `async` if using `await` inside
 export function middleware(request) {
-//   return NextResponse.redirect(new URL('/home', request.url))
-  const cookie = request.cookies.get('authorization')
-  // console.log('request middleware12',cookie)
+  request.cookies.get('authorization')
 }
-
-// // See "Matching Paths" below to learn more
-// export const config = {
-//   matcher: '/about/:path*',
-// }

@@ -1,7 +1,6 @@
-import { cookies, headers } from 'next/headers'
+import { headers } from 'next/headers'
 
-export async function GET(request) {
-  const cookieStore = cookies()
+export async function GET() {
   const headersList = headers()
   return new Response('Hello, Next.js!', {
     status: 200,
